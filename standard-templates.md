@@ -61,9 +61,8 @@ Context: (same for all statement types)
     "extensions": {
         "http://skilling.us/extension/has-student-role": true,
         "http://skilling.us/extension/course-site": "http://webapps.skilling.us",
-        "http://skilling.us/extension/course-name": "Business web apps"
-        "http://skilling.us/extension/semester": "fall, 2021",
-        "http://skilling.us/extension/section": "938903"
+        "http://skilling.us/extension/class-name": "Business web apps"
+        "http://skilling.us/extension/class-id": "34"
     }
 }
 
@@ -181,6 +180,7 @@ id - the lesson URL.
 "result": {
   "extensions": {
      "https://xapi.skillling.us/pause-button-number": "3",
+     "https://xapi.skillling.us/pause-buttons-on-page": "5",
      "https://xapi.skillling.us/pause-button-use": "next" || "all"
   }
 }

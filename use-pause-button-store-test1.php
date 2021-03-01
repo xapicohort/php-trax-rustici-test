@@ -74,7 +74,6 @@ $contextExtensions->set('http://skilling.us/extension/semester', 'fall, 2021');
 $contextExtensions->set('http://skilling.us/extension/section', '938903');
 $context->setExtensions($contextExtensions);
 
-
 //Timestamp
 $timeStamp = TinCan\Util::getTimestamp();
 

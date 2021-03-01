@@ -2,20 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="addd8cf9-ae91-4930-82e9-34e6801da32f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/login-query-test1.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/login-store-test1.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logout-query-test1.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logout-store-test1.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/standard-templates.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/t2a.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/t4.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/use-pause-button-query-test1.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/use-pause-button-query-test2.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/use-pause-button-store-test1.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view-lesson-query-test1.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view-lesson-store-test1.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login-store-test1.php" beforeDir="false" afterPath="$PROJECT_DIR$/login-store-test1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logout-store-test1.php" beforeDir="false" afterPath="$PROJECT_DIR$/logout-store-test1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/standard-templates.md" beforeDir="false" afterPath="$PROJECT_DIR$/standard-templates.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/use-pause-button-store-test1.php" beforeDir="false" afterPath="$PROJECT_DIR$/use-pause-button-store-test1.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +59,9 @@
       <workItem from="1614178321251" duration="1198000" />
       <workItem from="1614258853919" duration="4119000" />
       <workItem from="1614348494996" duration="13260000" />
+      <workItem from="1614437094692" duration="7967000" />
+      <workItem from="1614527926584" duration="2111000" />
+      <workItem from="1614622371666" duration="37000" />
     </task>
     <servers />
   </component>

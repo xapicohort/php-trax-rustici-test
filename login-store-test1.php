@@ -21,7 +21,7 @@ $account->setName('123');
 $account->setHomePage('https://webapps.skilling.us/user/123');
 $actor->setAccount($account);
 
-// Verb
+// Verb$this
 $verb = new TinCan\Verb();
 $verb->setId('https://brindlewaye.com/xAPITerms/verbs/loggedin');
 $verb->setDisplay([
@@ -45,9 +45,9 @@ $contextExtensions = new TinCan\Extensions();
 // Boolean, not string.
 $contextExtensions->set('http://skilling.us/extension/has-student-role', true);
 $contextExtensions->set('http://skilling.us/extension/course-site', 'http://webapps.skilling.us');
-$contextExtensions->set('http://skilling.us/extension/course-name', 'Business web apps');
-$contextExtensions->set('http://skilling.us/extension/semester', 'fall, 2021');
-$contextExtensions->set('http://skilling.us/extension/section', '938903');
+$contextExtensions->set('http://skilling.us/extension/class-name', 'Business web apps');
+$contextExtensions->set('http://skilling.us/extension/class-id', '34');
+$context->setExtensions($contextExtensions);
 
 //Timestamp
 // Optional. LRS adds timestamp if none provided.
