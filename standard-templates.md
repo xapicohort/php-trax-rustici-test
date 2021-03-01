@@ -166,7 +166,7 @@ Use pause button
 
 "object": {
 	"objectType": "Activity",
-	"id": "https://webapps.skilling.us/lesson/validation-functions/pause/3",
+	"id": "https://webapps.skilling.us/lesson/validation-functions/pause",
 	"definition": {
 		"type": "http://adlnet.gov/expapi/activities/interaction",
 		    "name": {
