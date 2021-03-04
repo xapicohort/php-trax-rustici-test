@@ -59,10 +59,10 @@ Context: (same for all statement types)
 "context": {
     "platform": "https://skilling.us",
     "extensions": {
-        "http://skilling.us/extension/has-student-role": true,
-        "http://skilling.us/extension/course-site": "http://webapps.skilling.us",
-        "http://skilling.us/extension/class-name": "Business web apps"
-        "http://skilling.us/extension/class-id": "34"
+        "http://xapi.skilling.us/extension/hasstudentrole": true,
+        "http://xapi.skilling.us/extension/coursesite": "http://webapps.skilling.us",
+        "http://xapi.skilling.us/extension/classname": "Business web apps"
+        "http://xapi.skilling.us/extension/classid": "34"
     }
 }
 
@@ -166,7 +166,7 @@ Use pause button
 
 "object": {
 	"objectType": "Activity",
-	"id": "https://webapps.skilling.us/lesson/validation-functions/pause",
+	"id": "http://xapi.skilling.us/activity/pause",
 	"definition": {
 		"type": "http://adlnet.gov/expapi/activities/interaction",
 		    "name": {
@@ -179,9 +179,11 @@ id - the lesson URL.
 
 "result": {
   "extensions": {
-     "https://xapi.skillling.us/pause-button-number": "3",
-     "https://xapi.skillling.us/pause-buttons-on-page": "5",
-     "https://xapi.skillling.us/pause-button-use": "next" || "all"
+     "https://xapi.skillling.us/resultextention/pausebuttonnumber": "3",
+     "https://xapi.skillling.us/resultextention/pausebuttonsonpage": "5",
+     "https://xapi.skillling.us/resultextention/pausebuttonuse": "next" || "all",
+     "http://xapi.skilling.us/resultextention/lessonurl": "SOmething",
+     "http://xapi.skilling.us/resultextention/lessonid": "33"
   }
 }
 
@@ -203,7 +205,7 @@ Triggered by JS every so often.
 	"objectType": "Activity",
 	"id": "https://webapps.skilling.us/lesson/validation-functions",
 	"definition": {
-		"type": "https://xapi.skillling.us/location-in-page",
+		"type": "http://xapi.skilling.us/activitytype/locationinpage",
 		    "name": {
                 "en-US": "Location in page"
             }
@@ -212,7 +214,11 @@ Triggered by JS every so often.
 
 "result": {
   "extensions": {
-     "https://xapi.skillling.us/location-in-page": "3333"
+     "http://xapi.skilling.us/resultextention/contentcontainerlength": "3333"
+     "http://xapi.skilling.us/resultextention/positionfirstvisibleelement": "232,
+     "http://xapi.skilling.us/resultextention/positionlastvisibleelement": "434"
+     "http://xapi.skilling.us/resultextention/lessontitle": "SOmething",
+     "http://xapi.skilling.us/resultextention/lessonid": "33"
   }
 }
 
