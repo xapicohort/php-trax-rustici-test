@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="addd8cf9-ae91-4930-82e9-34e6801da32f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/standard-templates.md" beforeDir="false" afterPath="$PROJECT_DIR$/standard-templates.md" afterDir="false" />
-    </list>
+    <list default="true" id="addd8cf9-ae91-4930-82e9-34e6801da32f" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -74,7 +70,7 @@
       <workItem from="1614784280773" duration="9926000" />
       <workItem from="1614871572045" duration="1816000" />
       <workItem from="1615043384902" duration="41000" />
-      <workItem from="1615326672863" duration="197000" />
+      <workItem from="1615326672863" duration="258000" />
     </task>
     <task id="LOCAL-00001" summary="New tests, and standard templates updates.">
       <created>1614622438467</created>
@@ -83,21 +79,31 @@
       <option name="project" value="LOCAL" />
       <updated>1614622438467</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added Drupal xAPI module from Skilling.">
+      <created>1615326930110</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1615326930110</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="New tests, and standard templates updates." />
-    <option name="LAST_COMMIT_MESSAGE" value="New tests, and standard templates updates." />
+    <MESSAGE value="Added Drupal xAPI module from Skilling." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Drupal xAPI module from Skilling." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="592" y="123" key="CommitChangelistDialog2" timestamp="1614622437483">
+    <state x="592" y="123" key="CommitChangelistDialog2" timestamp="1615326928329">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="592" y="123" key="CommitChangelistDialog2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1614622437483" />
+    <state x="592" y="123" key="CommitChangelistDialog2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1615326928329" />
     <state x="873" y="398" key="NewPhpFileDialog" timestamp="1614701466853">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
