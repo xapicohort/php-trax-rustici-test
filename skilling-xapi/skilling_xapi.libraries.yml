@@ -1,0 +1,8 @@
+xapi:
+  version: 1.x
+  js:
+    libraries/save-scroll-position/save-scroll-position.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings

@@ -1,0 +1,36 @@
+skilling.admin.config.xapi_settings_form:
+  path: '/admin/skilling/config/xapi'
+  defaults:
+    _form: '\Drupal\skilling_xapi\Form\XapiSettingsForm'
+    _title: 'Skilling xAPI settings'
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    _admin_route: TRUE
+
+# Save a More button click.
+skilling_xapi.save_more_click:
+  path: '/skilling-xapi/save-more-click'
+  defaults:
+    _controller: '\Drupal\skilling_xapi\Controller\SaveMoreClickController::saveMoreClick'
+  methods: [POST]
+  requirements:
+    _permission: 'access content'
+
+# Save scroll position.
+skilling_xapi.save_scroll_position:
+  path: '/skilling-xapi/save-scroll-position'
+  defaults:
+    _controller: '\Drupal\skilling_xapi\Controller\SaveScrollPositionController::saveScrollPosition'
+  methods: [POST]
+  requirements:
+    _permission: 'access content'
+
+# Save lesson unload.
+skilling_xapi.save_lesson_unload:
+  path: '/skilling-xapi/save-lesson-unload'
+  defaults:
+    _controller: '\Drupal\skilling_xapi\Controller\SaveLessonUnloadController::saveLessonUnload'
+  methods: [POST]
+  requirements:
+    _permission: 'access content'

@@ -1,0 +1,203 @@
+<?php
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\node\Entity\Node;
+use Drupal\skilling\SkillingConstants;
+use Drupal\skilling\SkillingCurrentUser;
+use Drupal\skilling_xapi\Exception\SkillingXapiException;
+use Drupal\skilling_xapi\Exception\SkillingXapiMissingObjectException;
+use Drupal\skilling_xapi\Exception\SkillingXapiMissingVerbException;
+use Drupal\skilling_xapi\SkillingXapiConstants;
+use Drupal\skilling_xapi\XapiStatement;
+use Drupal\user\UserInterface;
+
+require_once 'tincan/autoload.php';
+
+
+/**
+ * Implements hook_user_login().
+ *
+ * @throws \Drupal\skilling_xapi\Exception\SkillingXapiUnknownVerbException
+ * @throws \Drupal\Core\Entity\EntityMalformedException
+ * @throws SkillingXapiMissingObjectException
+ * @throws SkillingXapiMissingVerbException
+ * @throws \Drupal\skilling_xapi\Exception\SkillingXapiEmptySettingException
+ */
+function skilling_xapi_user_login(UserInterface $account) {
+  // Not working yet - have to save xAPI on next page load after login, so that
+  // current user, class, etc. classes have been initialized.
+  return;
+  $roles = $account->getRoles();
+  $isStudent = in_array(
+    SkillingConstants::CLASS_ROLE_STUDENT,
+    $roles
+  );
+  // Only log events for students.
+  if ($isStudent) {
+    /** @var XapiStatement $xapiService */
+    $xapiService = Drupal::service(SkillingXapiConstants::XAPI_SERVICE_NAME);
+    $x = Drupal::service('skilling.skilling_current_user');
+    $currentUser = \Drupal::service('skilling.skilling_current_user');
+    /** @var \Drupal\skilling\SkillingClass\SkillingCurrentClass $currentClassService */
+    $currentClassService = Drupal::service(SkillingConstants::CURRENT_CLASS_SERVICE);
+    /** @var \Drupal\skilling\Utilities $utilitiesService */
+    $utilitiesService = Drupal::service(SkillingConstants::SKILLING_UTILITIES_SERVICE);
+    // Set the verb.
+    $xapiService->setXapiVerb(SkillingXapiConstants::VERB_NAME_LOGIN);
+    // Set the object.
+    // Make an activity definition.
+    $activityDefinition = new TinCan\ActivityDefinition();
+    $activityDefinition->setType(SkillingXapiConstants::ACTIVITY_TYPE_COURSE);
+    $currentClassName = $currentClassService->getTitle();
+    $activityDefinition->setName([
+      'en-US' => $currentClassName,
+    ]);
+    // Activity id is site URL.
+    $siteUrl = \Drupal::request()->getSchemeAndHttpHost();
+    $object = new TinCan\Activity();
+    $object->setId($siteUrl);
+    $object->setDefinition($activityDefinition);
+    // Set the object.
+    $xapiService->setXapiObject($object);
+    // Save the statement.
+    $xapiService->saveXapiStatement();
+  }
+}
+
+
+/**
+ * Implements hook_user_logout().
+ *
+ * @param \Drupal\Core\Session\AccountInterface $account
+ *
+ * @throws \Drupal\Core\Entity\EntityMalformedException
+ */
+function skilling_xapi_user_logout(AccountInterface $account) {
+  // Not finished.
+  $roles = $account->getRoles();
+  $isStudent = in_array(
+    SkillingConstants::CLASS_ROLE_STUDENT,
+    $roles
+  );
+  // Only log events for students.
+  if ($isStudent) {
+    try {
+      /** @var XapiStatement $xapiService */
+      $xapiService = Drupal::service(SkillingXapiConstants::XAPI_SERVICE_NAME);
+      /** @var \Drupal\skilling\SkillingClass\SkillingCurrentClass $currentClassService */
+      $currentClassService = Drupal::service(SkillingConstants::CURRENT_CLASS_SERVICE);
+      // Set the verb.
+      $xapiService->setXapiVerb(SkillingXapiConstants::VERB_NAME_LOGOUT);
+      // Set the object.
+      // Make an activity definition.
+      $activityDefinition = new TinCan\ActivityDefinition();
+      $activityDefinition->setType(SkillingXapiConstants::ACTIVITY_TYPE_COURSE);
+      $currentClassName = $currentClassService->getTitle();
+      $activityDefinition->setName([
+        'en-US' => $currentClassName,
+      ]);
+      // Activity id is site URL.
+      $siteUrl = \Drupal::request()->getSchemeAndHttpHost();
+      $object = new TinCan\Activity();
+      $object->setId($siteUrl);
+      $object->setDefinition($activityDefinition);
+      // Set the object.
+      $xapiService->setXapiObject($object);
+      // Save the statement.
+      $xapiService->saveXapiStatement();
+    } catch (SkillingXapiException $e) {
+        \Drupal::messenger()->addError('Is xAPI set up correctly? Message: ' . $e->getMessage());
+    }
+  }
+}
+
+/**
+ * Add JS files for xAPI.
+ *
+ * @param array $build
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ * @param \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display
+ */
+function _skilling_xapi_add_js(array &$build, Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
+  if ($display->getOriginalMode() === 'full') {
+    /** @var Drupal\skilling\SkillingCurrentUser $currentUser */
+    $currentUser = \Drupal::service('skilling.skilling_current_user');
+    //Is the user a student?
+    if ($currentUser->isStudent()) {
+      // Attach xAPI recording library.
+      // Set params library needs.
+      $ajaxSecurityService = \Drupal::service('skilling.ajax_security');
+      $session = \Drupal::service('session');
+      $build['#attached']['library'][] = 'skilling_xapi/xapi';
+      $build['#attached']['drupalSettings']['csrfToken'] = $ajaxSecurityService->getCsrfToken();
+      $build['#attached']['drupalSettings']['sessionId'] = $session->getId();
+    } // End isStudent.
+  } // End is view mode full.
+}
+
+/**
+ * @param array $build
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ * @param \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display
+ *
+ * @throws \Drupal\Core\Entity\EntityMalformedException
+ */
+function skilling_xapi_node_view_alter(array &$build, Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
+  /** @var Drupal\skilling\SkillingCurrentUser $currentUser */
+  $currentUser = \Drupal::service('skilling.skilling_current_user');
+  $roles = $currentUser->getRoles();
+  $isStudent = in_array(
+    SkillingConstants::CLASS_ROLE_STUDENT,
+    $roles
+  );
+  // Only log events for students.
+  if ($isStudent) {
+    if ($display->getOriginalMode() === 'full') {
+      if ($entity->bundle() == SkillingConstants::LESSON_CONTENT_TYPE) {
+        try {
+          /** @var Node $node */
+          $node = $entity;
+          // Add nid to client-side, so pause processing can send it back.
+          $build['#attached']['drupalSettings']['skillingXapi']['nid']
+            = $node->id();
+          // Add JS to the page to record changes in scroll position.
+          _skilling_xapi_add_js($build, $entity, $display);
+          // Make xAPI statment to record lesson access.
+          /** @var XapiStatement $xapiService */
+          $xapiService = Drupal::service(SkillingXapiConstants::XAPI_SERVICE_NAME);
+          // Set the verb.
+          $xapiService->setXapiVerb(SkillingXapiConstants::VERB_NAME_OPENED);
+          // Set the object.
+          // Make an activity definition.
+          $activityDefinition = new TinCan\ActivityDefinition();
+          $activityDefinition->setType(SkillingXapiConstants::ACTIVITY_TYPE_RESOURCE);
+          $lessonTitle = $node->getTitle();
+          $activityDefinition->setName([
+            'en-US' => $lessonTitle,
+          ]);
+          // Description is body summary.
+          $summary = $node->body->summary;
+          if ($summary == '' || $summary == NULL) {
+            $summary = "(Empty)";
+          }
+          $activityDefinition->setDescription([
+            'en-US' => $summary
+          ]);
+          // Activity id is URL.
+          $lessonUrl = $node->toUrl()->setAbsolute()->toString();
+          $object = new TinCan\Activity();
+          $object->setId($lessonUrl);
+          $object->setDefinition($activityDefinition);
+          // Set the object.
+          $xapiService->setXapiObject($object);
+          // Save the statement.
+          $xapiService->saveXapiStatement();
+        } catch (SkillingXapiException $e) {
+          \Drupal::messenger()->addError('Is xAPI set up correctly? Message: ' . $e->getMessage());
+        }
+      }
+    } //End display mode full.
+  }
+
+}

@@ -1,0 +1,4 @@
+services:
+  skilling_xapi.statement:
+    class: Drupal\skilling_xapi\XapiStatement
+    arguments: ['@skilling.skilling_current_user', '@skilling.current_class', '@skilling.utilities', '@config.factory']

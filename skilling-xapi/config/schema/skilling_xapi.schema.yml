@@ -1,0 +1,23 @@
+skilling_xapi.settings:
+  type: config_object
+  label: 'Skilling xAPI settings'
+  mapping:
+    submissions:
+      type: mapping
+      label: 'Skilling xAPI settings'
+      mapping:
+        skilling_xapi_endpoint_url:
+          type: text
+          label: 'Endpoint URL'
+        skilling_xapi_endpoint_user_name:
+          type: text
+          label: 'Endpoint user name'
+        skilling_xapi_endpoint_password:
+          type: text
+          label: 'Endpoint password'
+        skilling_xapi_platform:
+          type: text
+          label: 'Platform for xAPI statement context'
+        skilling_xapi_version:
+          type: text
+          label: 'Version of xAPI to use'

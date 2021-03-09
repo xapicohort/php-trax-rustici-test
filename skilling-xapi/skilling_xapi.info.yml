@@ -1,0 +1,12 @@
+name: Skilling xAPI
+type: module
+description: Track Skilling user events
+core: 8.x
+package: Skilling
+dependencies:
+  - skilling:skilling
+
+# Information added by Drupal.org packaging script on 2021-03-04
+version: '8.x-2.21'
+project: 'skilling'
+datestamp: 1614890888

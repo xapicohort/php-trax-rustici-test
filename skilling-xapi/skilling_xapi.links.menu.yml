@@ -1,0 +1,6 @@
+skilling.admin.config.xapi_settings_form:
+  title: 'Skilling xAPI settings'
+  route_name: skilling.admin.config.xapi_settings_form
+  description: 'Configure xAPI'
+  parent: skilling.admin.config
+  weight: 50

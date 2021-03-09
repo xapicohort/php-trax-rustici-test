@@ -230,7 +230,7 @@ Triggered by page leave - JS calls a controller on the app server.
 
 
 "verb": {
-        "id": "http://activitystrea.ms/schema/1.0/close",
+        "id": "http://activitystrea.ms/schema/1.0/d",
         "display": {
             "en-US": "closed"
         }
